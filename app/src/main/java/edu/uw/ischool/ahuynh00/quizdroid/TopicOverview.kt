@@ -1,5 +1,6 @@
 package edu.uw.ischool.ahuynh00.quizdroid
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -19,7 +20,7 @@ class TopicOverview : AppCompatActivity() {
         val totalQuestions = findViewById<TextView>(R.id.total_questions)
         val beginBtn = findViewById<Button>(R.id.begin_button)
 
-        when (quizTopic) { //another way to do this?
+        when (quizTopic) { //todo: replace with find (questionpage line 13)
             "Math" -> {
                 description.text = mathQuiz.description
                 totalQuestions.text = "${mathQuiz.questions.size.toString()} questions"
@@ -32,7 +33,9 @@ class TopicOverview : AppCompatActivity() {
             } else -> description.text = "Quiz not found"
         }
         beginBtn.setOnClickListener {
-            // set intent and adapter stuff here
+            val questionIntent = Intent(this, QuestionPage::class.java)
+            questionIntent.putExtra("quiz topic", quizTopic)
+            startActivity(questionIntent)
         }
 
     }

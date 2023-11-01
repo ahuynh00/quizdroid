@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 
-data class Quiz(val description: String, val questions: Array<Question>) {
+data class Quiz(val name: String, val description: String, val questions: Array<Question>) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -51,12 +51,14 @@ data class Question(val prompt: String, val options: Array<String>, val answer: 
 val mathQuestions = arrayOf(
     Question("What is 2 + 2?", arrayOf("3", "4", "5", "6"),
         "4" ),
-    Question("If i have 3 apples and eat one, how many apples do i have left?", arrayOf("0", "1", "2", "3"),
+    Question("If i have 3 apples and eat one, how many apples do i have left?",
+        arrayOf("0", "1", "2", "3"),
         "2")
 )
 
 val physicsQuestions = arrayOf(
-    Question("What is the gravitational acceleration constant in m/s^2?", arrayOf("3.14", "5.67", "7.83", "9.81"),
+    Question("What is the gravitational acceleration constant in m/s^2?",
+        arrayOf("3.14", "5.67", "7.83", "9.81"),
         "9.81"),
     Question("How many seconds are there in a minute?", arrayOf("15", "30", "45", "60"),
         "60")
@@ -64,16 +66,18 @@ val physicsQuestions = arrayOf(
 
 val marvel_super_heroesQuestions = arrayOf(
     Question("How many infinite stones are there?", arrayOf("6", "7", "8", "9"), "6"),
-    Question("What does S.H.I.E.L.D. stand for?", arrayOf("Security Hope Insurance Empowerment Life Devoted",
+    Question("What does S.H.I.E.L.D. stand for?",
+        arrayOf("Security Hope Insurance Empowerment Life Devoted",
         "Secure Hostile Intelligence Expert Life Division",
         "Superhuman Homeland Intelligence Enforcement and Logistics Division",
-        "Security Homeland Intervention Enforcement and Logistics Division"), "Security Homeland Intervention Enforcement and Logistics Division")
+        "Security Homeland Intervention Enforcement and Logistics Division"),
+        "Security Homeland Intervention Enforcement and Logistics Division")
 )
 
-val mathQuiz = Quiz("Mathematics is an area of knowledge that includes the topics of numbers, formulas and related structures, shapes and the spaces in which they are contained", mathQuestions)
-val physicsQuiz = Quiz("Physics is the natural science of matter, involving the study of matter, its fundamental constituents, its motion and behavior through space and time", physicsQuestions)
-val marvel_super_heroesQuiz = Quiz("Marvel Comics is an American comic book publisher and the property of The Walt Disney Company since December 31, 2009", marvel_super_heroesQuestions)
-
+val mathQuiz = Quiz("Math","Mathematics is an area of knowledge that includes the topics of numbers, formulas and related structures, shapes and the spaces in which they are contained", mathQuestions)
+val physicsQuiz = Quiz("Physics","Physics is the natural science of matter, involving the study of matter, its fundamental constituents, its motion and behavior through space and time", physicsQuestions)
+val marvel_super_heroesQuiz = Quiz("Marvel Super Heroes", "Marvel Comics is an American comic book publisher and the property of The Walt Disney Company since December 31, 2009", marvel_super_heroesQuestions)
+val quizzes = arrayOf(mathQuiz, physicsQuiz, marvel_super_heroesQuiz)
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
