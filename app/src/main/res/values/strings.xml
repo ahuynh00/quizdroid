@@ -1,9 +1,4 @@
 <resources>
     <string name="app_name">quizdroid</string>
-    <!--    <array name="quiz_topics">-->
-    <!--        <string name="math">Math</string>-->
-    <!--        <string name="physics">Physics</string>-->
-    <!--        <string name="marvel_super_heroes">Marvel Super Heroes</string>-->
-    <!--    </array>-->
 
 </resources>
