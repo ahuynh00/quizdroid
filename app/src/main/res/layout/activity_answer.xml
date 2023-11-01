@@ -6,41 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".AnswerActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+
+    <TextView
+        android:id="@+id/userAnswer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="164dp"
         android:paddingHorizontal="50dp"
-        android:paddingTop="100dp"
+        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/userAnswer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+    <TextView
+        android:id="@+id/correctAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:paddingHorizontal="50dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userAnswer" />
 
-        <TextView
-            android:id="@+id/correctAnswer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+    <TextView
+        android:id="@+id/totalCorrect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:paddingHorizontal="50dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/correctAnswer" />
 
-        <TextView
-            android:id="@+id/totalCorrect"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
 
-        <Button
-            android:id="@+id/nextFinishBtn"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:paddingVertical="300dp"
-            android:text="Next" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/nextFinishBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:layout_marginBottom="188dp"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

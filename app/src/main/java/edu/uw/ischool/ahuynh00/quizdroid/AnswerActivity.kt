@@ -17,11 +17,6 @@ class AnswerActivity : AppCompatActivity() {
         val currentQuiz = quizzes.find{it.name == currentQuizName}!!
         val currentQuestion = intent.getStringExtra("current question index")!!
         val previousQuestionIndex = currentQuestion.toInt() - 1
-//        = if (currentQuestion == "-1") {
-//            currentQuiz.questions.size - 1
-//        } else {
-//            currentQuestion!!.toInt() - 1
-//        }
         val userAnswer = intent.getStringExtra("user answer")
 
         val userAnswerTextView = findViewById<TextView>(R.id.userAnswer)
@@ -32,7 +27,15 @@ class AnswerActivity : AppCompatActivity() {
         userAnswerTextView.text = "Your answer was: $userAnswer"
         correctAnswerTextView.text = "The correct answer is: ${currentQuiz.questions[previousQuestionIndex].answer}"
         totalCorrectTextView.text = "You have $correctAnswersCount out of ${currentQuiz.questions.size} correct"
-        if (currentQuestion !== "-1") {
+        if (currentQuestion.toInt() >= currentQuiz.questions.size) {
+            nextFinishBtn.text = "Finish"
+            nextFinishBtn.setOnClickListener{
+                Log.d("next fin btn", "fin pls")
+                val homeIntent = Intent(this, MainActivity::class.java)
+                startActivity(homeIntent)
+                finish()
+            }
+        } else {
             nextFinishBtn.text = "Next"
             nextFinishBtn.setOnClickListener{
                 Log.d("next btn", "$currentQuestion")
@@ -41,12 +44,6 @@ class AnswerActivity : AppCompatActivity() {
                 questionIntent.putExtra("current question index", currentQuestion)
                 questionIntent.putExtra("correct answers count", correctAnswersCount.toString())
                 startActivity(questionIntent)
-            }
-        } else {
-            nextFinishBtn.text = "Finish"
-            //todo make route to home
-            nextFinishBtn.setOnClickListener{
-                Log.d("next fin btn", "fin pls")
             }
         }
     }
