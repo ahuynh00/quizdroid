@@ -14,7 +14,7 @@ class QuestionPage : AppCompatActivity() {
 //    private var currentQuizName = intent.getStringExtra("quiz topic")
 //    private val currentQuiz = quizzes.find{it.name == currentQuizName} // todo: check for null?
 
-    private var currentQuestionIndex = 0
+    private var currentQuestionIndex = 0;
     private var correctAnswersCount = 0
 
     private lateinit var questionPrompt: TextView
@@ -29,6 +29,15 @@ class QuestionPage : AppCompatActivity() {
 
         currentQuizName = intent.getStringExtra("quiz topic")!!
         currentQuiz = quizzes.find{it.name == currentQuizName}!! // todo: check for null?
+
+        intent.getStringExtra("current question index")?.let {
+            currentQuestionIndex = intent.getStringExtra("current question index")!!.toInt()
+            Log.d("intent current question index", currentQuestionIndex.toString())
+        }
+        intent.getStringExtra("correct answers count")?. let {
+            correctAnswersCount = intent.getStringExtra("correct answers count")!!.toInt()
+            Log.d("intent correct ans count", correctAnswersCount.toString())
+        }
 
         questionPrompt = findViewById(R.id.question_prompt)
         questionPrompt.text = currentQuiz.questions[currentQuestionIndex].prompt
@@ -46,7 +55,7 @@ class QuestionPage : AppCompatActivity() {
         submitBtn.setOnClickListener {
             val selectedVal = findViewById<RadioButton>(answerRadioGroup.checkedRadioButtonId).text.toString()
             checkAnswer(selectedVal)
-            loadAnswerPage()
+            loadAnswerPage(selectedVal)
         }
     }
 
@@ -60,16 +69,18 @@ class QuestionPage : AppCompatActivity() {
         Log.d("checkAnswer()", "currentQIndex: $currentQuestionIndex")
     }
 
-    private fun loadAnswerPage() {
+    private fun loadAnswerPage(selectedVal: String) {
         Log.d("loadAnswerPage()", "loading answer page")
-//        val answerIntent = Intent(this, AnswerActivity::class.java)
-//        answerIntent.putExtra("correct answers count", correctAnswersCount)
-//        answerIntent.putExtra("quiz topic", currentQuizName)
-//        if (currentQuestionIndex < currentQuiz!!.questions.size) {
-//            answerIntent.putExtra("current question index", currentQuestionIndex)
+        val answerIntent = Intent(this, AnswerActivity::class.java)
+        answerIntent.putExtra("correct answers count", correctAnswersCount.toString())
+        answerIntent.putExtra("quiz topic", currentQuizName)
+        answerIntent.putExtra("user answer", selectedVal)
+//        if (currentQuestionIndex < currentQuiz!!.questions.size - 1) {
+//            answerIntent.putExtra("current question index", currentQuestionIndex.toString())
 //        } else {
-//            answerIntent.putExtra("current question index", -1)
+//            answerIntent.putExtra("current question index", "-1")
 //        }
-//        startActivity(answerIntent)
+        answerIntent.putExtra("current question index", currentQuestionIndex.toString())
+        startActivity(answerIntent)
     }
 }
