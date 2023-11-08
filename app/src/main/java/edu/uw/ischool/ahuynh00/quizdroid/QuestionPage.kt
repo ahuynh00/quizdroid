@@ -75,11 +75,6 @@ class QuestionPage : AppCompatActivity() {
         answerIntent.putExtra("correct answers count", correctAnswersCount.toString())
         answerIntent.putExtra("quiz topic", currentQuizName)
         answerIntent.putExtra("user answer", selectedVal)
-//        if (currentQuestionIndex < currentQuiz!!.questions.size - 1) {
-//            answerIntent.putExtra("current question index", currentQuestionIndex.toString())
-//        } else {
-//            answerIntent.putExtra("current question index", "-1")
-//        }
         answerIntent.putExtra("current question index", currentQuestionIndex.toString())
         startActivity(answerIntent)
     }
