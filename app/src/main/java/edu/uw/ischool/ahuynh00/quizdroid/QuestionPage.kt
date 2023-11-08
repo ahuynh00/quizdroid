@@ -11,9 +11,6 @@ import android.widget.TextView
 import androidx.core.view.iterator
 
 class QuestionPage : AppCompatActivity() {
-//    private var currentQuizName = intent.getStringExtra("quiz topic")
-//    private val currentQuiz = quizzes.find{it.name == currentQuizName} // todo: check for null?
-
     private var currentQuestionIndex = 0;
     private var correctAnswersCount = 0
 
@@ -22,13 +19,15 @@ class QuestionPage : AppCompatActivity() {
     private lateinit var submitBtn: Button
 
     private lateinit var currentQuizName: String
-    private lateinit var currentQuiz: Quiz
+    private lateinit var currentQuiz: Topic
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question)
+        val repository = (this.application as QuizApp).topicRepository
+        val quizzes = repository.getAll()
 
         currentQuizName = intent.getStringExtra("quiz topic")!!
-        currentQuiz = quizzes.find{it.name == currentQuizName}!! // todo: check for null?
+        currentQuiz = quizzes.find{it.title == currentQuizName}!! // todo: check for null?
 
         intent.getStringExtra("current question index")?.let {
             currentQuestionIndex = intent.getStringExtra("current question index")!!.toInt()
@@ -40,7 +39,7 @@ class QuestionPage : AppCompatActivity() {
         }
 
         questionPrompt = findViewById(R.id.question_prompt)
-        questionPrompt.text = currentQuiz.questions[currentQuestionIndex].prompt
+        questionPrompt.text = currentQuiz.questions[currentQuestionIndex].questionText
         answerRadioGroup = findViewById(R.id.answerRadioGroup)
         for (i in 0 until answerRadioGroup.childCount) {
             val radioBtn = answerRadioGroup.getChildAt(i) as RadioButton
@@ -61,7 +60,7 @@ class QuestionPage : AppCompatActivity() {
 
     private fun checkAnswer(selectedVal: String) {
         val question = currentQuiz!!.questions[currentQuestionIndex]
-        if (selectedVal == question.answer) {
+        if (selectedVal == question.options[question.answer]) {
             correctAnswersCount++
         }
         currentQuestionIndex++

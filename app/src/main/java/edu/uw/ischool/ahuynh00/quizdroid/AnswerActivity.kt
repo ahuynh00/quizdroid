@@ -11,10 +11,13 @@ class AnswerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_answer)
+        val repository = (this.application as QuizApp).topicRepository
+        val quizzes = repository.getAll()
+
 
         val correctAnswersCount = intent.getStringExtra("correct answers count")!!.toInt()
         val currentQuizName = intent.getStringExtra("quiz topic")
-        val currentQuiz = quizzes.find{it.name == currentQuizName}!!
+        val currentQuiz = quizzes.find{it.title == currentQuizName}!!
         val currentQuestion = intent.getStringExtra("current question index")!!
         val previousQuestionIndex = currentQuestion.toInt() - 1
         val userAnswer = intent.getStringExtra("user answer")
