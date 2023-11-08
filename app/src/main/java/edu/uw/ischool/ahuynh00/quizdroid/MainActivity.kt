@@ -12,14 +12,6 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 
-data class Topic(val title: String,
-                 val shortDescription: String,
-                 val longDescription: String,
-                 val questions: List<Quiz>)
-data class Quiz(val questionText: String,
-                val options: List<String>,
-                val answer: Int)
-
 class MainActivity : AppCompatActivity() {
     var topics: List<Topic> = mutableListOf()
     lateinit var topicsAdapter: ArrayAdapter<String>
