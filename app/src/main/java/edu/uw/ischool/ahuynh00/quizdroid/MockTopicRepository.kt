@@ -46,12 +46,20 @@ class MockTopicRepository: TopicRepository {
         return topics
     }
 
-    override fun delete(topic: Topic) {
+    override fun deleteTopic(topic: Topic) {
         topics.remove(topic)
     }
 
-    override fun insert(topic: Topic) {
+    override fun insertTopic(topic: Topic) {
         topics.add(topic)
+    }
+
+    override fun deleteQuiz(quiz: Quiz, topic: Topic) {
+        TODO("Not yet implemented")
+    }
+
+    override fun insertQuiz(quiz: Quiz, topic: Topic) {
+        TODO("Not yet implemented")
     }
 }
 
