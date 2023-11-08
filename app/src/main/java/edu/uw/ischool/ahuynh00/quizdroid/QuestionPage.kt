@@ -60,6 +60,8 @@ class QuestionPage : AppCompatActivity() {
 
     private fun checkAnswer(selectedVal: String) {
         val question = currentQuiz!!.questions[currentQuestionIndex]
+        Log.d("checkAnswer", "selected value: ${selectedVal}")
+        Log.d("checkAnswer", "question.options[question.answer]: ${question.options[question.answer]}")
         if (selectedVal == question.options[question.answer]) {
             correctAnswersCount++
         }
