@@ -29,7 +29,7 @@ class AnswerActivity : AppCompatActivity() {
         val nextFinishBtn = findViewById<Button>(R.id.nextFinishBtn)
 
         userAnswerTextView.text = "Your answer was: $userAnswer"
-        correctAnswerTextView.text = "The correct answer is: ${currentQuiz.questions[previousQuestionIndex].options[correctAnswerIndex]}"
+        correctAnswerTextView.text = "The correct answer is: ${currentQuiz.questions[previousQuestionIndex].answers[correctAnswerIndex]}"
         totalCorrectTextView.text = "You have $correctAnswersCount out of ${currentQuiz.questions.size} correct"
         if (currentQuestion.toInt() >= currentQuiz.questions.size) {
             nextFinishBtn.text = "Finish"

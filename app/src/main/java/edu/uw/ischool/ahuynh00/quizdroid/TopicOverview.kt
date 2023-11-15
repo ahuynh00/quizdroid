@@ -21,7 +21,7 @@ class TopicOverview : AppCompatActivity() {
         val beginBtn = findViewById<Button>(R.id.begin_button)
 
         val selectedQuiz = repository.getAll().find { it.title == quizTopic }
-        description.text = selectedQuiz?.longDescription
+        description.text = selectedQuiz?.desc
         totalQuestions.text = "${selectedQuiz?.questions?.size.toString()} questions"
 
         beginBtn.setOnClickListener {

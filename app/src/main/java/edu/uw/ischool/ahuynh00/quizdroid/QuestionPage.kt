@@ -39,11 +39,11 @@ class QuestionPage : AppCompatActivity() {
         }
 
         questionPrompt = findViewById(R.id.question_prompt)
-        questionPrompt.text = currentQuiz.questions[currentQuestionIndex].questionText
+        questionPrompt.text = currentQuiz.questions[currentQuestionIndex].text
         answerRadioGroup = findViewById(R.id.answerRadioGroup)
         for (i in 0 until answerRadioGroup.childCount) {
             val radioBtn = answerRadioGroup.getChildAt(i) as RadioButton
-            radioBtn.text = currentQuiz.questions[currentQuestionIndex].options[i]
+            radioBtn.text = currentQuiz.questions[currentQuestionIndex].answers[i]
             radioBtn.setOnClickListener{
                 submitBtn.isEnabled = (answerRadioGroup.checkedRadioButtonId !== -1)
             }
@@ -61,8 +61,8 @@ class QuestionPage : AppCompatActivity() {
     private fun checkAnswer(selectedVal: String) {
         val question = currentQuiz!!.questions[currentQuestionIndex]
         Log.d("checkAnswer", "selected value: ${selectedVal}")
-        Log.d("checkAnswer", "question.options[question.answer]: ${question.options[question.answer]}")
-        if (selectedVal == question.options[question.answer]) {
+        Log.d("checkAnswer", "question.options[question.answer]: ${question.answers[question.answer]}")
+        if (selectedVal == question.answers[question.answer]) {
             correctAnswersCount++
         }
         currentQuestionIndex++
