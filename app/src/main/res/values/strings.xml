@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">quizdroid</string>
-
+    <string name="questions_url">Questions Data URL</string>
+    <string name="interval">Interval (Minutes)</string>
 </resources>
